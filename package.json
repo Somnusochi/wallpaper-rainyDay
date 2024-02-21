@@ -1,0 +1,48 @@
+{
+  "name": "wallpaper-rainyday",
+  "version": "1.0.0",
+  "description": "A rainDay theme for wallpaper engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Somnusochi/wallpaper-rainyDay.git"
+  },
+  "keywords": [
+    "rainyday",
+    "wallpaper-engine"
+  ],
+  "author": "Somnusochi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Somnusochi/wallpaper-rainyDay/issues"
+  },
+  "homepage": "https://github.com/Somnusochi/wallpaper-rainyDay#readme",
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/eslint-parser": "^7.23.10",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.56.0",
+    "eslint-config-alloy": "^5.1.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint . --fix",
+      "prettier -w ."
+    ]
+  }
+}

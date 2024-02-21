@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+. "${0%/*}/h"
+exec < /dev/tty && npx git-cz --hook || true
