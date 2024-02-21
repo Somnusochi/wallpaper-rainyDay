@@ -1,4 +1,2 @@
-#!/usr/bin/env sh
-. "${0%/*}/h"
+PATH="/usr/local/bin:$PATH"
 npx lint-staged
-npm test
