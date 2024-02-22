@@ -16,5 +16,8 @@ module.exports = {
   },
   rules: {
     // 自定义你的规则
+    'max-params': 'off',
+    complexity: 'off',
+    'max-depth': 'off',
   },
 };
