@@ -11,7 +11,22 @@
 </template>
 
 <script setup lang="ts">
-const title = ref<string>('Rspack + Vue');
+import observeUserProperties from '@/utils/windowProxy';
+
+
+const title = ref<string>('');
+
+const handlePropertyChange = (propKey: string, value: any) => {
+  title.value = value;
+  console.log(`Property ${propKey} changed to ${value}`);
+};
+
+// 在组件挂载时设置监听
+onMounted(() => {
+  // 设置监听
+  observeUserProperties(handlePropertyChange);
+});
+
 </script>
 
 <style lang="scss" scoped></style>
