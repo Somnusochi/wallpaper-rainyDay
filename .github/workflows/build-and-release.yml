@@ -1,0 +1,57 @@
+# .github/workflows/build-and-release.yml
+
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # 或者你希望触发的分支
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist
+          asset_name: dist.zip
+          asset_content_type: application/zip
+
+      - name: Zip dist directory
+        run: zip -r dist.zip dist/
+
+      - name: Upload zipped dist directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-zip
+          path: dist.zip
