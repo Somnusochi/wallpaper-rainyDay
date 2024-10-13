@@ -29,6 +29,11 @@ jobs:
       - name: Build project
         run: pnpm run build
 
+      # 将dist目录打成zip包
+      - name: Zip Dist
+        run: zip -r dist.zip dist
+      # 创建Release
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -39,22 +44,32 @@ jobs:
           release_name: Release v${{ github.run_number }}
           draft: false
           prerelease: false
-
+      # 上传zip包
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist
+          asset_path: ./dist.zip
           asset_name: dist.zip
           asset_content_type: application/zip
 
-      - name: Zip dist directory
-        run: zip -r dist.zip dist/
 
-      - name: Upload zipped dist directory
-        uses: actions/upload-artifact@v3
+  create-changelog:
+    runs-on: ubuntu-latest
+    # 需要等build结束后才执行此处
+    needs: build-release
+    steps:
+      - uses: actions/checkout@v3
         with:
-          name: dist-zip
-          path: dist.zip
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      # 生成版本更新日志
+      - run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
