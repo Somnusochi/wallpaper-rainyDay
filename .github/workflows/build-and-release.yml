@@ -6,8 +6,6 @@ on:
   push:
     tags:
       - "v*"
-    branches:
-      - main  # 或者你希望触发的分支
 
 jobs:
   build-and-release:
