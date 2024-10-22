@@ -1,22 +1,14 @@
 <template>
-  <div>
-    <a href="https://www.rspack.dev/" target="_blank">
-      <img src="@/assets/rspack.svg" class="logo" alt="Rspack logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="@/assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="index">
+    <Rain></Rain>
   </div>
-  <HelloWorld :msg="title" />
 </template>
 
-<script setup lang="ts">
+<script setup>
 import observeUserProperties from '@/utils/windowProxy';
+const title = ref('Rspack + Vue');
 
-
-const title = ref<string>('');
-
-const handlePropertyChange = (propKey: string, value: any) => {
+const handlePropertyChange = (propKey, value) => {
   title.value = value;
   console.log(`Property ${propKey} changed to ${value}`);
 };
@@ -26,7 +18,12 @@ onMounted(() => {
   // 设置监听
   observeUserProperties(handlePropertyChange);
 });
-
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.index {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #999;
+}
+</style>

@@ -5,7 +5,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 jobs:
   build-and-release:
@@ -54,7 +54,6 @@ jobs:
           asset_path: ./dist.zip
           asset_name: dist.zip
           asset_content_type: application/zip
-
 
   create-changelog:
     runs-on: ubuntu-latest
