@@ -17,10 +17,10 @@ A dynamic, realistic rainy window theme for Wallpaper Engine, powered by Vue 3 a
 
 ## Setup
 
-Install the dependencies using npm (or pnpm/yarn):
+Install the dependencies using pnpm:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## Get Started
@@ -28,11 +28,11 @@ npm install
 Start the dev server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Build the app for production:
 
 ```bash
-npm run build
+pnpm run build
 ```
