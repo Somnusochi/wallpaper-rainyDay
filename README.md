@@ -2,7 +2,7 @@
 
 A dynamic, realistic rainy window theme for Wallpaper Engine, powered by Vue 3 and WebGL.
 
-![Screenshot](./screenshot.jpg)
+<video src="./demo.mp4" width="100%" controls autoplay loop muted></video>
 
 ## Features
 
