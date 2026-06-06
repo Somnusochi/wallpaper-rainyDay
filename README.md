@@ -2,7 +2,7 @@
 
 A dynamic, realistic rainy window theme for Wallpaper Engine, powered by Vue 3 and WebGL.
 
-https://github.com/Somnusochi/wallpaper-rainyDay/raw/main/demo.mp4
+![Video Demo](./demo.webp)
 
 ## Features
 
