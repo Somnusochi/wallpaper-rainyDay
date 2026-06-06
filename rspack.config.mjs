@@ -14,13 +14,13 @@ const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 export default defineConfig({
   context: __dirname,
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
   },
   output: {
     path: resolve(__dirname, 'dist'), // 输出目录
     filename: '[name].bundle.js', // 输出文件名
     chunkFilename: 'js/[name]/[name].[contenthash].js', // 异步 chunk 文件名
-    publicPath: '/', // 公共路径
+    publicPath: './', // 使用相对路径，兼容 Wallpaper Engine 的本地加载
     clean: true, // 清理输出目录
     assetModuleFilename: 'assets/[name].[hash][ext]', // 资源文件命名规则
   },
@@ -71,6 +71,7 @@ export default defineConfig({
   plugins: [
     AutoImport({
       imports: ['vue', 'vue-router'],
+      dts: './src/auto-imports.d.ts',
     }),
     Components({}),
     new rspack.HtmlRspackPlugin({
@@ -79,6 +80,14 @@ export default defineConfig({
     new rspack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
+    }),
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        { from: 'public/static', to: 'static' },
+        { from: 'public/project.json', to: 'project.json' },
+        { from: 'public/background.png', to: 'background.png' },
+        { from: 'public/mjpeg-worker.js', to: 'mjpeg-worker.js' },
+      ],
     }),
     new VueLoaderPlugin(),
   ],

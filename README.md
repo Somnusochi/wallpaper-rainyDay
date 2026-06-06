@@ -1,10 +1,23 @@
 # wallpaper-rainyDay
 
-A rainyDay theme for wallpaper engine
+A dynamic, realistic rainy window theme for Wallpaper Engine, powered by Vue 3 and WebGL.
+
+![Screenshot](./rain-webgl-screenshot.png)
+
+## Features
+
+- **Realistic Water Drops**: Simulates physical rain drops on glass using WebGL. Includes drop deformation, refraction, specular highlights, and shadow rendering.
+- **Physics Engine**: Custom simulator handling gravity, wind, and drop collision/merging.
+- **Dynamic Backgrounds**: Supports both static Images and Video backgrounds (`mp4`, `webm`, etc.).
+- **Interactive Configuration**: Fully customizable via a floating control panel, interacting directly with Wallpaper Engine properties:
+  - Visuals: Water drop color, background blur, opacity, crop alignment.
+  - Drops: Radius sizes, drop generation frequency, screen limits.
+  - Physics: Gravity scale, wind direction, rain update speed.
+- **TypeScript & Rspack**: Built for high performance with modern web toolchains.
 
 ## Setup
 
-Install the dependencies:
+Install the dependencies using npm (or pnpm/yarn):
 
 ```bash
 npm install

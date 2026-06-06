@@ -6,7 +6,42 @@
     <title>Vue</title>
 		<script src="/static/rainyday.js" charset="utf-8"></script>
     <script type="text/javascript">
-      window.userProperties = {};
+      window.userProperties = {
+        fps: 24,
+        blur: 3,
+        opacity: 1,
+        fillStyle: '#8ED6FF',
+        enableCollisions: true,
+        gravityThreshold: 3,
+        gravityAngle: 1.57,
+        gravityAngleVariance: 0,
+        presetMin: 3,
+        presetBase: 5,
+        presetFreq: 0.5,
+        rainSpeed: 50,
+        maxDrops: 500,
+        backgroundFit: 'fitWidth',
+        cropAlign: 'bottom',
+        backgroundImage: 'background.png',
+      };
+
+      window.wallpaperPropertyListener = {
+        applyUserProperties: function(properties) {
+          for (var key in properties) {
+            if (key === 'fillStyle') {
+              var rgb = properties[key].value.split(' ').map(function(c) {
+                return Math.ceil(parseFloat(c) * 255);
+              });
+              window.userProperties[key] = '#' + rgb.map(function(c) {
+                var hex = c.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+              }).join('');
+            } else {
+              window.userProperties[key] = properties[key].value;
+            }
+          }
+        }
+      };
     </script>
   </head>
   <body>
