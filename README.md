@@ -2,6 +2,8 @@
 
 A dynamic, realistic rainy window theme for Wallpaper Engine, powered by Vue 3 and WebGL.
 
+![Screenshot](./screenshot.jpg)
+
 ## Features
 
 - **Realistic Water Drops**: Simulates physical rain drops on glass using WebGL. Includes drop deformation, refraction, specular highlights, and shadow rendering.
